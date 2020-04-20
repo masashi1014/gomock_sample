@@ -5,9 +5,10 @@
 package mock_repository
 
 import (
+	reflect "reflect"
+
 	gomock "github.com/golang/mock/gomock"
 	repository "github.com/masashi1014/gomock_sample/repository"
-	reflect "reflect"
 )
 
 // MockUserRepository is a mock of UserRepository interface

@@ -12,52 +12,52 @@ import (
 func Test_FindOrCreateUser(t *testing.T) {
 	tests := []struct {
 		name string
-		id int64
-		err error
+		id   int64
+		err  error
 
 		app func(ctrl *gomock.Controller) *App
 	}{
 		{
-			name:"IsRegistered = true",
-			id: 1,
-			err: nil,
+			name: "IsRegistered = true",
+			id:   1,
+			err:  nil,
 			app: func(ctrl *gomock.Controller) *App {
 				user := &repository.User{
-					ID: 1,
-					Name: "DummyUser",
+					ID:           1,
+					Name:         "DummyUser",
 					IsRegistered: true,
 				}
 				urMock := mocks.NewMockUserRepository(ctrl)
 				urMock.EXPECT().GetUserByID(int64(1)).Return(user)
 
 				return &App{
-					UserRepository:urMock,
+					UserRepository: urMock,
 				}
 			},
 		},
 		{
-			name:"IsRegistered = false",
-			id: 1,
-			err: nil,
+			name: "IsRegistered = false",
+			id:   1,
+			err:  nil,
 			app: func(ctrl *gomock.Controller) *App {
 				user := &repository.User{
-					ID: 1,
-					Name: "DummyUser",
+					ID:           1,
+					Name:         "DummyUser",
 					IsRegistered: false,
 				}
 				urMock := mocks.NewMockUserRepository(ctrl)
 				urMock.EXPECT().GetUserByID(int64(1)).Return(user)
 
-				urMock.EXPECT().Create().Return(user,nil)
+				urMock.EXPECT().Create().Return(user, nil)
 
 				return &App{
-					UserRepository:urMock,
+					UserRepository: urMock,
 				}
 			},
 		},
 	}
 
-	for _,tt := range tests {
+	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			ctrl := gomock.NewController(t)
 			defer ctrl.Finish()
@@ -70,4 +70,3 @@ func Test_FindOrCreateUser(t *testing.T) {
 		})
 	}
 }
-

@@ -6,8 +6,8 @@ import (
 )
 
 type User struct {
-	ID int64
-	Name string
+	ID           int64
+	Name         string
 	IsRegistered bool
 }
 
@@ -16,25 +16,25 @@ type UserRepository interface {
 	GetUserByID(id int64) *User
 }
 
-func NewUserRepository() UserRepository{
+func NewUserRepository() UserRepository {
 	return &userRepository{}
 }
 
 type userRepository struct{}
 
-func (re *userRepository) Create() (*User, error){
+func (re *userRepository) Create() (*User, error) {
 	user := &User{
-		ID: 1,
-		Name: "DummyUser",
+		ID:           1,
+		Name:         "DummyUser",
 		IsRegistered: true,
 	}
 
 	return user, nil
 }
 
-func (re *userRepository) GetUserByID(id int64) *User{
+func (re *userRepository) GetUserByID(id int64) *User {
 	user := &User{
-		ID: id,
+		ID:   id,
 		Name: "DummyUser",
 	}
 

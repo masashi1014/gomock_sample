@@ -8,13 +8,13 @@ type App struct {
 	UserRepository repository.UserRepository
 }
 
-func NewApplication() App{
+func NewApplication() App {
 	return App{
 		UserRepository: repository.NewUserRepository(),
 	}
 }
 
-func(app *App) FindOrCreateUser(id int64) error {
+func (app *App) FindOrCreateUser(id int64) error {
 	user := app.UserRepository.GetUserByID(id)
 
 	if !user.IsRegistered {
