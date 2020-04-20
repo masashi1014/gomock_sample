@@ -15,6 +15,7 @@ func NewApplication() App {
 }
 
 func (app *App) FindOrCreateUser(id int64) error {
+	// this "user" will be return value of EXPECT method
 	user := app.UserRepository.GetUserByID(id)
 
 	if !user.IsRegistered {
